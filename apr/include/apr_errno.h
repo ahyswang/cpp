@@ -1,0 +1,57 @@
+#ifndef APR_ERROR_H
+#define APR_ERROR_H
+
+
+#define APR_SUCCESS				0
+
+/**
+* 错误码起始位置
+*/
+#define APR_OS_START_ERROR		20000
+
+/**
+* 错误码段的最大范围
+*/
+#define APR_OS_ERRSPACE_SIZE	10000
+
+/**
+* APR_OS_START_STATUS 状态段。
+*/
+#define APR_OS_START_STATUS    (APR_OS_START_ERROR + APR_OS_ERRSPACE_SIZE)
+
+/**
+* APR_OS_START_APR 平台段.
+*/
+#define APR_OS_START_APR  (APR_OS_START_STATUS + APR_OS_ERRSPACE_SIZE)
+
+/**
+* APR_OS_START_CANONERR 工具段.
+*/
+#define APR_OS_START_UTIL  (APR_OS_START_STATUS + APR_OS_ERRSPACE_SIZE)
+
+/**
+* APR_OS_START_SYSERR 系统段（支持平台系统错误码与APR错误码相互转换）
+*/
+#define APR_OS_START_SYSERR    (APR_OS_START_UTIL + APR_OS_ERRSPACE_SIZE)
+
+#define APR_FROM_OS_ERROR(e) (e == 0 ? APR_SUCCESS : e + APR_OS_START_SYSERR)
+#define APR_TO_OS_ERROR(e)   (e == 0 ? APR_SUCCESS : e - APR_OS_START_SYSERR)
+
+/* 错误码相关 */
+#define APR_EACCES			(APR_OS_START_APR + 1)
+#define APR_ENOMEM			(APR_OS_START_APR + 2)
+#define APR_TIMEUP			(APR_OS_START_APR + 3)
+#define APR_EBUSY			(APR_OS_START_APR + 4)
+#define APR_EOF				(APR_OS_START_APR + 5)
+#define APR_EINTR			(APR_OS_START_APR + 6)
+#define APR_EAGAIN			(APR_OS_START_APR + 7)
+#define APR_EINVAL			(APR_OS_START_APR + 8)
+#define APR_EDSOOPEN		(APR_OS_START_APR + 9)
+#define APR_ESYMNOTFOUND	(APR_OS_START_APR + 10)
+#define APR_EINIT			(APR_OS_START_APR + 11)
+#define APR_ENOTIMPL		(APR_OS_START_APR + 12)
+#define APR_BADARG			(APR_OS_START_APR + 13)
+#define APR_NOTFOUND		(APR_OS_START_APR + 14)
+
+
+#endif /* APR_ERROR_H */
