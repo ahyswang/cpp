@@ -1,0 +1,1 @@
+[<airpre>][<query>](<querycmd0>|<querycmd1>|<querycmd2>;
