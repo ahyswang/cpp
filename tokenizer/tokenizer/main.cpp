@@ -95,6 +95,30 @@ int create_edge(graph_net_type &g, unsigned long &idx_0, unsigned long &idx_1, s
 	return 0;
 }
 
+int create_net_2(std::string& str, graph_net_type &g)
+{
+	token_net_type parse;
+
+	std::istringstream iss(str);
+	parse.set_stream(iss);
+
+	int type;
+	std::string token;
+
+	//[<airpre>][<query>](<querycmd0>|<querycmd1>|<querycmd2>);
+	while (true){
+		parse.get_token(type, token);
+		//std::cout << type << " " << token << "\t";
+		if (type == END_OF_FILE) {
+			break;
+		}
+		if (type == LABEL) 
+		{
+			//
+		}
+	}
+}
+
 int create_net_res(std::string& str, graph_net_type &g, unsigned long &idx_0, unsigned long &idx_1)
 {
 	token_net_type parse;
