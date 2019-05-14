@@ -33,3 +33,4 @@
 
 # Linux
 *.swp
+/tokenizer/tokenizer/Debug
