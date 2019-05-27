@@ -6,3 +6,8 @@ LIB = -L./ -L/home/yswang/temp/alsa_aarch64/lib/ -lasound
 alsa_capture_hlw : alsa_capture_hlw.c
 	$(CC) -o $@ $^ $(INCLUDE) $(LIB)
 
+playback_min : playback_min.c
+	$(CC) -o $@ $^ $(INCLUDE) $(LIB)
+
+capture_min : capture_min.c
+	$(CC) -o $@ $^ $(INCLUDE) $(LIB)
