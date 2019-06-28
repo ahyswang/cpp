@@ -1,0 +1,9 @@
+all: write read 
+write: write.o
+	gcc -o $@ $^
+read: read.o
+	gcc -o $@ $^
+clean:
+	rm -f write 
+	rm -f read 
+	rm -f *.o
