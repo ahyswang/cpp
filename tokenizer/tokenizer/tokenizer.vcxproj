@@ -74,14 +74,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="assert.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="config_reader_kernel_1.h" />
     <ClInclude Include="cpp_tokenizer_kernel_1.h" />
     <ClInclude Include="directed_graph_kernel_1.h" />
     <ClInclude Include="dlib.h" />
+    <ClInclude Include="error.h" />
     <ClInclude Include="graph_kernel_1.h" />
+    <ClInclude Include="memory_manager.h" />
+    <ClInclude Include="memory_manager\memory_manager_kernel_1.h" />
+    <ClInclude Include="memory_manager\memory_manager_kernel_2.h" />
+    <ClInclude Include="memory_manager\memory_manager_kernel_3.h" />
+    <ClInclude Include="memory_manager\memory_manager_kernel_abstract.h" />
+    <ClInclude Include="stack_trace.h" />
     <ClInclude Include="tokenizer_kernel_1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="config_reader_kernel_1.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stack_trace.cpp" />
     <ClCompile Include="tokenizer_kernel_1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

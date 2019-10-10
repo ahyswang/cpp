@@ -4,6 +4,11 @@
 
 typedef int (* func_t)(int, int);
 
+int one()
+{
+	printf("main one");
+}
+
 int main(void) 
 {
 	void *handle = NULL;

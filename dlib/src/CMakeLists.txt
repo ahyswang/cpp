@@ -16,12 +16,15 @@ endif()
 # 指定编译文件
 file(GLOB SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
   ./sockets/*.cpp
+  ./threads/*.cpp
+  ./tokenizer/*.cpp
 #  ./msci_api/*.cpp
-  ./*.cpp
+ ./main1.cpp
 )
 
 # 指定生成目标
-add_executable(demo2 ${SOURCES})
+#add_executable(demo2 ${SOURCES})
+add_executable(demo1 ${SOURCES})
 # 添加库
 
 IF (WIN32)

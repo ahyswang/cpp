@@ -21,7 +21,7 @@ mknod /dev/memdev0 c 243 0
 - 指定主设备号会出错????
 
 ## 参考
-1.字符驱动
+1.字符驱动（非常不错的教程）
 https://blog.csdn.net/Archar_Saber/article/details/85198183
 2.ubuntu驱动开发
 https://blog.csdn.net/mingtianwendy/article/details/77951666

@@ -15,7 +15,7 @@
 		dlib_o_out << "Error detected in function " << __FUNCTION__ << ".\n\n";     \
 		dlib_o_out << "Failing expression was " << #_exp << ".\n";					\
 		dlib_o_out << std::boolalpha << _message << "\n";							\
-		throw std::runtime_error(dlib_o_out.str().c_str());								\
+		throw std::runtime_error(dlib_o_out.str().c_str());							\
 	}}
 
 typedef std::allocator<char> default_memory_manager;

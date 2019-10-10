@@ -117,6 +117,8 @@ int create_net_2(std::string& str, graph_net_type &g)
 			//
 		}
 	}
+
+	return 0;
 }
 
 int create_net_res(std::string& str, graph_net_type &g, unsigned long &idx_0, unsigned long &idx_1)
@@ -225,7 +227,7 @@ int load_res()
 }
 
 
-int main(int argc, char **argv)
+int main1(int argc, char **argv)
 {
 	// 遍历都没有问题
 	std::string res = "[<airpre>][<query>](<querycmd0>|<querycmd1>|<querycmd2>)|\
@@ -272,6 +274,67 @@ int main(int argc, char **argv)
 // 	std::string str;
 // 
 // 	search_for_directed_cycles_1(g.node(0), str);
+	
+	return 0;
+}
+
+#include "error.h"
+#include "config_reader_kernel_1.h"
+#include "./memory_manager/memory_manager_kernel_2.h"
+
+int main2(int argc, char** argv)
+{
+	try
+	{
+		//throw config_reader::config_reader_error(100);
+		config_reader_kernel_1 cr;
+		cr.load_from("config.conf");
+
+		std::cout << cr.block("our_block")["a_key"] << std::endl;
+		std::cout << cr["some_key"] << std::endl;
+	}
+	catch(config_reader_kernel_1::config_reader_error& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	catch(dlib::error& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	return 0;
+}
+
+class Human
+{
+public:
+	std::string name_;
+	std::string addr_;
+	Human()
+	{
+		name_ = "name";
+		addr_ = "addr";
+	}
+	virtual ~Human()
+	{
+		name_ = "";
+		addr_ = "";
+	}
+};
+
+int main(int argc, char** argv)
+{
+	try
+	{
+		memory_manager_kernel_2<Human, 10> human_m;
+
+		Human* h1 = human_m.allocate();
+
+		human_m.deallocate(h1);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	
 	return 0;
 }

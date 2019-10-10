@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="memory_manager">
+      <UniqueIdentifier>{694aa4fd-dda2-4bf4-b3ae-9b19ab188706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tokenizer_kernel_1.h">
@@ -30,12 +33,48 @@
     <ClInclude Include="dlib.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="config_reader_kernel_1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager\memory_manager_kernel_2.h">
+      <Filter>memory_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="stack_trace.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="assert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager\memory_manager_kernel_3.h">
+      <Filter>memory_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager\memory_manager_kernel_1.h">
+      <Filter>memory_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager\memory_manager_kernel_abstract.h">
+      <Filter>memory_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tokenizer_kernel_1.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="config_reader_kernel_1.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stack_trace.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
