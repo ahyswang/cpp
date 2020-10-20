@@ -222,7 +222,7 @@ sin func
 #define pi 3.14159326
 int sin_tab[512];
 
-int main()
+int main_sin_func()
 {
 	{
 		//init table
@@ -634,5 +634,54 @@ int main_convert()
 	return 0;
 }
 
+float sigmoid_f(float x)
+{
+	return 1.0 / (1.0 + exp(-x));
+}
 
+int main()
+{
+	//制表
+	//x Q8 
+	//y Q30
+	/*
+	x [-16, 16] Q8(步长=(float)1/(1<<8)) 点数 = (2*2^4)/(1/(1<<8)) = 2*2^4*2^8=2^13
+	y [0, 1]   Q30 [-1,1] 满足范围
+	*/
+	{
+		#define N_POINT (8192)
+		int step = 1<<8;
+		int points = (2*16)/(1.0/(1<<8)); //2^13
+		int sig_tab[N_POINT];
+		int i,index ;
+		int x_q, y_q;
+		float x, y;
+		printf("points = %d, N_POINT = %d\n", points, N_POINT);
+		for (i = 0; i < N_POINT; i++)
+		{
+			x = -16 + i * (1.0/(1<<8)); 
+			x_q = x * (1<<8); //Q8
+			y = sigmoid_f(x);
+			y_q = y * (1<<30); //Q30
+			if (i<10)
+			 	printf("x = %f, y = %f, x_q = %d, y_q = %d\n", x, y, x_q, y_q);
+			sig_tab[i] = y_q;
+		}
+		
+		{
+			x = 2.1;
+			x_q = x * (1<<10); //Q10  
+			printf("Q10 x = %f, x_q = %d\n", x, x_q);
+			x_q = x_q/(1<<(10-8)); //Q10->Q8
+			printf("Q10 x = %f, x_q = %d\n", x, x_q);
+			index = 4096 + x_q;
+			y_q = sig_tab[index]; 
+			y = (float)y_q/(1<<30);
+			printf("x = %f, y = %f, sigmod_f(x) = %f\n",x , y, sigmoid_f(x));
+		}
+		
+	}
+
+	return 0;
+}
 
