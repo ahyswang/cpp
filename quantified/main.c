@@ -639,7 +639,7 @@ float sigmoid_f(float x)
 	return 1.0 / (1.0 + exp(-x));
 }
 
-int main()
+int main_sigmoid()
 {
 	//制表
 	//x Q8 
@@ -684,4 +684,81 @@ int main()
 
 	return 0;
 }
+
+int main()
+{
+	/*
+	负数右移高位保持为1，为了保持符号位。
+	在c 中左移也就是所说的逻辑移位，右端补0，而右移是算数移位，左端补齐的是最高位的符号位。
+	*/
+
+	{
+		int i32_1 = -1024;
+		int i;
+		char str[36];
+		printf("i32_1 = %d, 0x%x\n", i32_1, i32_1);
+		for (i = 0; i < 32; i++)
+		{
+			i32_1 = i32_1>>1;
+			//itoa(str, (int *)(&i32_1), 2);
+			printf(">>%d, i32_1 = %d, 0x%x\n", i, i32_1, i32_1);
+		}
+		for (i = 0; i < 32; i++)
+		{
+			i32_1 = i32_1>>1;
+			//itoa(str, (int *)(&i32_1), 2);
+			printf("<<%d, i32_1 = %d, 0x%x\n", i, i32_1, i32_1);
+		}
+	}
+	{
+		int i32_1 = -1024;
+		int i;
+		char str[36];
+		printf("i32_1 = %d, 0x%x\n", i32_1, i32_1);
+		for (i = 0; i < 32; i++)
+		{
+			i32_1 = i32_1<<1;
+			//itoa(str, (int *)(&i32_1), 2);
+			printf("<<%d, i32_1 = %d, 0x%x\n", i, i32_1, i32_1);
+		}
+	}
+	//移位主动进1
+	/*
+	if (shift > 0) {
+		result = result >> (shift - 1);
+		result = (result & 0x1) + (result >> 1);
+	}
+	*/
+	{
+		int shift = 1;
+		int result = 0b100111;
+		char s[64];
+		itoa(*(int *)(&result), s, 2);
+		printf("0. result = %d, 0x%x, 0b%s\n", result, result, s);
+		if (shift > 0) {
+			result = result >> (shift - 1);
+			result = (result & 0x1) + (result >> 1);  //右移一位相当于除以2、如果是1除以2结果为0.5、然后主动进移位。
+		}
+		itoa(*(int *)(&result), s, 2);
+		printf("0. result = %d, 0x%x, 0b%s\n", result, result, s);
+	}
+	/*
+	ceil(x)返回不小于x的最小整数值（然后转换为double型）。
+	floor(x)返回不大于x的最大整数值。
+	round(x)返回x的四舍五入整数值。
+	*/
+	{
+		float num = 1.4999;
+		printf("ceil(%f) is %f\n", num, ceil(num));
+		printf("floor(%f) is %f\n", num, floor(num));
+		printf("round(%f) is %f\n", num, round(num));
+		num = -1.4999;
+		printf("ceil(%f) is %f\n", num, ceil(num));
+		printf("floor(%f) is %f\n", num, floor(num));
+		printf("round(%f) is %f\n", num, round(num));
+	}
+}
+
+
+
 
